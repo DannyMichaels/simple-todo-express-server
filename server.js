@@ -1,9 +1,9 @@
-const app = require("./app");
-const debug = require("debug")("todo-api");
-const http = require("http");
+const app = require('./app');
+const debug = require('debug')('todo-api');
+const http = require('http');
 
 // Normalize Port
-const normalizePort = val => {
+const normalizePort = (val) => {
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
@@ -20,18 +20,18 @@ const normalizePort = val => {
 };
 
 // Setting up callbacks
-const onError = error => {
-  if (error.syscall !== "listen") {
+const onError = (error) => {
+  if (error.syscall !== 'listen') {
     throw error;
   }
-  const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + port;
   switch (error.code) {
-    case "EACCES":
-      console.error(bind + " requires elevated privileges");
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
-    case "EADDRINUSE":
-      console.error(bind + " is already in use");
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -41,21 +41,20 @@ const onError = error => {
 
 const onListening = () => {
   const addr = server.address();
-  const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
-  debug("Listening on " + bind);
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + port;
+  debug('Listening on ' + bind);
 };
 
 const onServerStart = () => {
-  console.log('TODO Api server is running on PORT: ',
-    app.get('port'));
-}
+  console.log('TODO Api server is running on PORT: ', app.get('port'));
+};
 
 // Set the PORT
-const port = normalizePort(process.env.PORT || "3000");
-app.set("port", port);
+const port = normalizePort(process.env.PORT || '5029');
+app.set('port', port);
 
 // Start the Server
 const server = http.createServer(app);
-server.on("error", onError);
-server.on("listening", onListening);
+server.on('error', onError);
+server.on('listening', onListening);
 server.listen(port, onServerStart);
