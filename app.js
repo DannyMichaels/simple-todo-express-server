@@ -38,7 +38,7 @@ app.use(cors());
 // Handle Authentication If Any
 
 // Send basic info about the API
-app.use('/api/info', (req, res, next) => {
+app.use('/info', (req, res, next) => {
   res.status(200).json({
     name: 'TODO Api',
     version: '1.0',
@@ -51,6 +51,6 @@ app.use('/api/info', (req, res, next) => {
 });
 
 // Set up API Routes
-app.use('/api/v1/todos', todoRoutes);
+app.use('/todos', todoRoutes);
 
 module.exports = app;
